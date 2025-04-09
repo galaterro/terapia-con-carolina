@@ -6,10 +6,11 @@ import { ValoresComponent } from "./components/valores/valores.component";
 import { CreatividadComponent } from "./components/creatividad/creatividad.component";
 import { FormacionComponent } from './components/formacion/formacion.component';
 import { LocalizacionComponent } from './components/localizacion/localizacion.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeroComponentComponent, AboutMeComponent, ValoresComponent, CreatividadComponent, FormacionComponent, LocalizacionComponent],
+  imports: [RouterOutlet, HeroComponentComponent, AboutMeComponent, ValoresComponent, CreatividadComponent, FormacionComponent, LocalizacionComponent, CommentsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
