@@ -1,7 +1,7 @@
 <div class="bg-[rgb(0,84,70)] bg-[url(/flores.svg)] bg-blend-darken bg-cover bg-center min-h-[738px] flex items-center py-16">
   <div class="container mx-auto px-4 md:px-6 max-w-5xl">
     <!-- Título con la misma estética que otros componentes -->
-    <h2 class="text-4xl font-crimson text-[#005446] text-center mb-10">¿Hablamos?</h2>
+    <h2 class="text-4xl font-crimson text-white text-center mb-10">¿Hablamos?</h2>
     
     <!-- Formulario con estilo similar a otros componentes -->
     <div class="bg-white p-8 rounded-lg border-2 border-black shadow-lg">
@@ -16,7 +16,7 @@
         <!-- Mensaje de error -->
         <div *ngIf="formError" 
              class="p-4 mb-6 bg-red-100 border border-red-400 text-red-700 rounded">
-          Por favor, completa todos los campos correctamente.
+          {{errorMessage}}
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,11 +77,19 @@
           </p>
         </div>
           
-        <!-- Botón de envío con estilo similar al botón de reserva -->
+        <!-- Botón de envío con indicador de carga -->
         <div class="flex justify-center md:justify-start">
           <button type="submit" 
-                 class="px-8 py-3 bg-[#005446] text-white font-lexend font-bold rounded-full shadow-lg hover:bg-[#004438] hover:shadow-xl hover:scale-105 transform transition-all duration-300">
-            ENVIAR MENSAJE
+                 [disabled]="isLoading"
+                 class="px-8 py-3 bg-[#005446] text-white font-lexend font-bold rounded-full shadow-lg hover:bg-[#004438] hover:shadow-xl hover:scale-105 transform transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed">
+            <span *ngIf="!isLoading">ENVIAR MENSAJE</span>
+            <span *ngIf="isLoading" class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              ENVIANDO...
+            </span>
           </button>
         </div>
       </form>
