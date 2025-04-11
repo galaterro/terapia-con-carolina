@@ -1,0 +1,90 @@
+<div class="bg-[rgb(0,84,70)] bg-[url(/flores.svg)] bg-blend-darken bg-cover bg-center min-h-[738px] flex items-center py-16">
+  <div class="container mx-auto px-4 md:px-6 max-w-5xl">
+    <!-- Título con la misma estética que otros componentes -->
+    <h2 class="text-4xl font-crimson text-[#005446] text-center mb-10">¿Hablamos?</h2>
+    
+    <!-- Formulario con estilo similar a otros componentes -->
+    <div class="bg-white p-8 rounded-lg border-2 border-black shadow-lg">
+      <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="space-y-6">
+        
+        <!-- Mensaje de éxito -->
+        <div *ngIf="formSubmitted && !formError" 
+             class="p-4 mb-6 bg-green-100 border border-green-400 text-green-700 rounded">
+          Tu mensaje se ha enviado correctamente. Me pondré en contacto contigo lo antes posible.
+        </div>
+        
+        <!-- Mensaje de error -->
+        <div *ngIf="formError" 
+             class="p-4 mb-6 bg-red-100 border border-red-400 text-red-700 rounded">
+          Por favor, completa todos los campos correctamente.
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Campo de Nombre -->
+          <div>
+            <label for="nombre" class="block text-[#005446] font-lexend font-semibold mb-2">Tu nombre</label>
+            <input type="text" 
+                   id="nombre" 
+                   formControlName="nombre"
+                   class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#005446] focus:ring focus:ring-[#68B89E] focus:ring-opacity-50 font-lexend"
+                   [ngClass]="{'border-red-500': contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched}">
+            <p *ngIf="contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched" 
+               class="text-red-500 text-sm mt-1 font-lexend">
+              Por favor, introduce tu nombre.
+            </p>
+          </div>
+          
+          <!-- Campo de Teléfono -->
+          <div>
+            <label for="telefono" class="block text-[#005446] font-lexend font-semibold mb-2">Tu teléfono</label>
+            <input type="tel" 
+                   id="telefono" 
+                   formControlName="telefono"
+                   class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#005446] focus:ring focus:ring-[#68B89E] focus:ring-opacity-50 font-lexend"
+                   [ngClass]="{'border-red-500': contactForm.get('telefono')?.invalid && contactForm.get('telefono')?.touched}">
+            <p *ngIf="contactForm.get('telefono')?.invalid && contactForm.get('telefono')?.touched" 
+               class="text-red-500 text-sm mt-1 font-lexend">
+              Por favor, introduce un número de teléfono válido (9 dígitos).
+            </p>
+          </div>
+        </div>
+          
+        <!-- Campo de Email -->
+        <div>
+          <label for="email" class="block text-[#005446] font-lexend font-semibold mb-2">Email</label>
+          <input type="email" 
+                 id="email" 
+                 formControlName="email"
+                 class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#005446] focus:ring focus:ring-[#68B89E] focus:ring-opacity-50 font-lexend"
+                 [ngClass]="{'border-red-500': contactForm.get('email')?.invalid && contactForm.get('email')?.touched}">
+          <p *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" 
+             class="text-red-500 text-sm mt-1 font-lexend">
+            Por favor, introduce una dirección de email válida.
+          </p>
+        </div>
+          
+        <!-- Campo de Mensaje -->
+        <div>
+          <label for="mensaje" class="block text-[#005446] font-lexend font-semibold mb-2">Cuéntame un poco acerca de qué te trae por aquí...</label>
+          <textarea id="mensaje" 
+                    formControlName="mensaje"
+                    rows="5"
+                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-[#005446] focus:ring focus:ring-[#68B89E] focus:ring-opacity-50 font-lexend"
+                    [ngClass]="{'border-red-500': contactForm.get('mensaje')?.invalid && contactForm.get('mensaje')?.touched}"></textarea>
+          <p *ngIf="contactForm.get('mensaje')?.invalid && contactForm.get('mensaje')?.touched" 
+             class="text-red-500 text-sm mt-1 font-lexend">
+            Por favor, cuéntame un poco sobre lo que te trae aquí (mínimo 10 caracteres).
+          </p>
+        </div>
+          
+        <!-- Botón de envío con estilo similar al botón de reserva -->
+        <div class="flex justify-center md:justify-start">
+          <button type="submit" 
+                 class="px-8 py-3 bg-[#005446] text-white font-lexend font-bold rounded-full shadow-lg hover:bg-[#004438] hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+            ENVIAR MENSAJE
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
